@@ -1,17 +1,93 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 import PropTypes from "prop-types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
-export default function Weather({ temp }) {
+const weatherOptions = {
+  Clouds: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Thunderstorm: {
+    iconName: "",
+    gradient: []
+  },
+  Drizzle: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Rain: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Snow: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Atmosphere: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Clear: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Haze: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Mist: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Smoke: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Dust: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Fog: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Sand: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Ash: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Squall: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  },
+  Tornado: {
+    iconName: "weather-sunny",
+    gradient: ["#4DA0B0", "#D39D38"]
+  }
+};
+
+export default function Weather({ temp, condition }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={weatherOptions[condition].gradient}
+      style={styles.container}
+    >
+      <StatusBar barStyle="light-content" />
       <View style={styles.halfContainer}>
-        <MaterialCommunityIcons name="weather-lightning-rainy" size={96} />
+        <MaterialCommunityIcons
+          name={weatherOptions[condition].iconName}
+          size={85}
+          color="white"
+        />
         <Text style={styles.temp}>{temp}°C</Text>
       </View>
       <View style={styles.halfContainer}></View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -44,7 +120,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   temp: {
-    fontSize: 42
+    fontSize: 42,
+    color: "white"
   },
 
   halfContainer: {
